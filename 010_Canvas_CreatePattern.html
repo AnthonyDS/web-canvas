@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function draw() {
+			// Получение элемента и его графического контекста
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			
+			var pattern = new Image();
+			pattern.src = "images/tile_box.png";
+			
+			pattern.onload = function() {
+				context.save();
+				context.translate(8, canvas.height - pattern.height);
+				context.fillStyle = context.createPattern(
+					pattern,
+					"repeat-x" // repeat | repeat-x | repeat-y
+				);
+				context.fillRect(
+					0, 0,
+					Math.floor(canvas.width / pattern.width) * pattern.width, pattern.height
+				);
+				context.restore();
+			}
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", draw, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+</body>
+</html>

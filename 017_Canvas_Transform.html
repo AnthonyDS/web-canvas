@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function loadHandler() {
+			var $ = function (id) {
+				return document.getElementById(id);
+			}
+			
+			var context = $("canvas").getContext("2d");
+			
+			var box = new Image();
+			box.src = "images/tile_box.png";
+			box.onload = draw;
+			$("buttonTransform").onclick = draw;
+			
+			function draw() {
+				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+				
+				var a = $("a").value;
+				var b = $("b").value;
+				var c = $("c").value;
+				var d = $("d").value;
+				var tx = $("tx").value;
+				var ty = $("ty").value;
+				
+				context.save();
+				context.translate(100, 100);
+				context.transform(a, b, c, d, tx, ty);
+				// Изометрическое отображение
+				//context.transform(0.866, -0.5, 0.866, 0.5, 0, 0);
+				context.drawImage(box, 0, 0, 32, 32);
+				context.restore();
+			}
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", loadHandler, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+	<hr />
+	Масштаб X <input type="number" id="a" value="1" /><br />
+	Искривление по Y<input type="number" id="b" value="0" /><br />
+	Искривление по X<input type="number" id="c" value="0" /><br />
+	Масштаб Y <input type="number" id="d" value="1" /><br />
+	Перемещение по X<input type="number" id="tx" value="0" /><br />
+	Перемещение по Y<input type="number" id="ty" value="0" /><br />
+	
+	<input type="button" id="buttonTransform" value="Transform" />
+</body>
+</html>

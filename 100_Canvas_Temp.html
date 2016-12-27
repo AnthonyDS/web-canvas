@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function draw() {
+			// Получение элемента и его графического контекста
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			
+			// Создание пути (линии)
+			ctx.lineWidth = 15;
+			ctx.strokeStyle = "black";
+
+//			var ctx = {
+//				drawLine: function() {},
+//				drawRect: function() {},
+//				drawAngle: function() {},
+//			};
+
+
+			///////////////////////////////////////////////////////////////////
+			//
+			// lineCap: butt | round | square
+			//
+			ctx.lineCap = "butt";
+			ctx.beginPath();
+			ctx.moveTo(50, 40);
+			ctx.lineTo(300, 40);
+			ctx.stroke();
+
+			ctx.lineCap = "round";
+			ctx.beginPath();
+			ctx.moveTo(50, 60);
+			ctx.lineTo(300, 60);
+			ctx.stroke();
+
+			ctx.lineCap = "square";
+			ctx.beginPath();
+			ctx.moveTo(50, 80);
+			ctx.lineTo(300, 80);
+			ctx.stroke();
+
+			///////////////////////////////////////////////////////////////////
+			// lineJoin: round | bevel | miter
+			//
+			ctx.lineJoin = "round";
+			ctx.lineCap = "butt";
+			ctx.beginPath();
+			ctx.moveTo(50, 100);
+			ctx.lineTo(100, 150);
+			ctx.lineTo(150, 100);
+			ctx.fillStyle = "red";
+			ctx.fill();
+			ctx.stroke();
+
+			ctx.lineJoin = "bevel";
+			ctx.lineCap = "square";
+			ctx.beginPath();
+			ctx.moveTo(200, 100);
+			ctx.lineTo(250, 150);
+			ctx.lineTo(300, 100);
+			ctx.fillStyle = "green";
+			ctx.fill();
+			ctx.stroke();
+
+			ctx.lineJoin = "miter";
+			ctx.lineCap = "round";
+			ctx.beginPath();
+			ctx.moveTo(125, 175);
+			ctx.lineTo(175, 125);
+			ctx.lineTo(225, 175);
+			ctx.fillStyle = "blue";
+			ctx.fill();
+			ctx.shadowOffsetX = 0;
+			ctx.shadowOffsetY = 5;
+			ctx.shadowColor = "#000000";
+			ctx.shadowBlur = 10;
+			ctx.stroke();
+
+
+			var text = "Hello";
+			ctx.font = "32px Verdana";
+			//ctx.textBaseline = "middle";
+			ctx.fillStyle = "orange";
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = "rgba(0, 155, 0, 0.9)";
+			ctx.fillText(text, 135, 210);
+			ctx.strokeText(text, 135, 210);
+			//ctx.closePath();
+			ctx.shadowBlur = 0;
+			ctx.shadowOffsetY = 0;
+
+
+			var rectBeginX = 110,
+				rectX = 0;
+			rectX = rectBeginX;
+			var moveBlock = function() {
+				ctx.beginPath();
+				ctx.fillStyle = "white";
+				ctx.fillRect(rectX, 220, 20, 10);
+				//ctx.closePath();
+				//ctx.stroke();
+
+				rectX += 5;
+				if(rectX > 220) { //ctx.canvas.width + 20) {
+					rectX = rectBeginX; //-20;
+				}
+
+				//ctx.beginPath();
+				ctx.fillStyle = "gray";
+				ctx.fillRect(rectX, 220, 20, 10);
+				//ctx.closePath();
+				ctx.stroke();
+			};
+
+			setInterval(moveBlock, 30);
+
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", draw, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		width="350"
+		height="280"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+</body>
+</html>

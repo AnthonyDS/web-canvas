@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function loadHandler() {
+			var $ = function (id) {
+				return document.getElementById(id);
+			}
+			
+			var context = $("canvas").getContext("2d");
+			
+			
+			$("buttonTransform").onclick = function () {
+				//context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+				
+				var x = $("X").value;
+				var y = $("Y").value;
+				
+				context.save();
+				context.translate(x, y);
+				context.fillStyle = "green";
+				context.fillRect(0,0, 100, 100);
+				context.restore();
+			}
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", loadHandler, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+	<hr />
+	<input type="number" id="X" value="0" /><br />
+	<input type="number" id="Y" value="0" /><br />
+	<input type="button" id="buttonTransform" value="Translate" />
+</body>
+</html>

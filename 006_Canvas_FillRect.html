@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function draw() {
+			// Получение элемента и его графического контекста
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			
+			// Настройка стиля заливки
+			context.fillStyle = "blue";
+			// Выбираем прямоугольную область
+			//
+			// 100, 100 => x, y
+			// 50, 50   => width, height
+			context.fillRect(100, 100, 50, 50);
+			
+			context.strokeStyle = "yellow";
+			context.lineWidth = 10;
+			// Рисуем контур
+			context.strokeRect(100, 100, 50, 50);
+			
+			// Очистка прямоугольной области от контекста
+			context.clearRect(125, 125, 35, 35);
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", draw, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+</body>
+</html>

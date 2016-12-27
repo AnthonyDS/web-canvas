@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function draw() {
+			// Получение элемента и его графического контекста
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			
+			//
+			// Gradient #1
+			//
+			var gradient = context.createLinearGradient(
+				100, 100, // x1, y1
+				200, 300  // x2, y2
+			);
+			// Добавляем позицию остановки смещения и цвет (3 раза)
+			gradient.addColorStop(0, "Red");
+			gradient.addColorStop(0.5, "Green");
+			gradient.addColorStop(1, "Blue");
+			
+			// Устанавливаем объект градиента в качестве цвета заливки контекста
+			context.fillStyle = gradient;
+			context.fillRect(0, 0, canvas.width, canvas.height);
+			
+			
+			//
+			// Gradient #2
+			//
+			var gradient2 = context.createLinearGradient(
+				100, 100, // x1, y1
+				200, 300  // x2, y2
+			);
+			// Добавляем позицию остановки смещения и цвет (3 раза)
+			gradient2.addColorStop(0, "rgba(0, 0, 0, 0.5)");
+			gradient2.addColorStop(0.5, "rgba(100, 100, 100, 0.5)");
+			gradient2.addColorStop(1, "rgba(200, 200, 200, 0.5)");
+			
+			// Устанавливаем объект градиента в качестве цвета заливки контекста
+			context.fillStyle = gradient2;
+			context.fillRect(150, 150, 100, 100);
+			
+			
+			//
+			// Gradient #3
+			//
+			var gradient3 = context.createLinearGradient(
+				0, 150, // x1, y1
+				150, 0  // x2, y2
+			);
+			// Добавляем позицию остановки смещения и цвет (3 раза)
+			gradient3.addColorStop(0, "red");
+			gradient3.addColorStop(1, "yellow");
+			
+			// Устанавливаем объект градиента в качестве цвета заливки контекста
+			context.fillStyle = gradient3;
+			context.fillRect(150, 20, 100, 100);
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", draw, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function loadHandler() {
+			var $ = function (id) {
+				return document.getElementById(id);
+			}
+			
+			var context = $("canvas").getContext("2d");
+			
+			var box = new Image();
+			box.src = "images/tile_box.png";
+			box.onload = draw;
+			$("buttonScale").onclick = draw;
+			
+			var isAnimate = false;
+			var timerHandler;
+			$("buttonAnimateScale").onclick = function () {
+				isAnimate = !isAnimate;
+				if(isAnimate) {				
+					timerHandler = setInterval(function() {
+						$("D").value = $("D").value * 1 + 5;
+						draw();
+					}, 100);
+				} else {
+					clearInterval(timerHandler);
+				}
+			}
+			
+			function draw() {
+				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+				
+				var deg = $("D").value * Math.PI / 180;
+				
+				context.save();
+				context.translate(100, 100);
+				context.rotate(deg);
+				context.drawImage(box, 0, 0, 32, 32);
+				context.restore();
+			}
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", loadHandler, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+	<hr />
+	<input type="number" id="D" value="1" /><br />
+	<input type="button" id="buttonScale" value="Rotate" />
+	<input type="button" id="buttonAnimateScale" value="Animate" />
+</body>
+</html>

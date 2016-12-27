@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function draw() {
+			// Получение элемента и его графического контекста
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			
+			var gradient = context.createLinearGradient(0, 0, 0, 300);
+			
+			// Добавляем позицию остановки смещения и цвет (3 раза)
+			gradient.addColorStop(0, "Red");
+			gradient.addColorStop(0.5, "Green");
+			gradient.addColorStop(1, "Blue");
+			
+			// Устанавливаем объект градиента в качестве цвета заливки контекста
+			context.fillStyle = gradient;
+			context.fillRect(0, 0, canvas.width, canvas.height);
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", draw, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+</body>
+</html>

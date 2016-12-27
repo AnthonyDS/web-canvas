@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function draw() {
+			// Получение элемента и его графического контекста
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			
+			// Сохраняем копию текущего состояния контекста
+			context.save();
+			context.translate(100, 100);
+			
+			// Создание пути (линии)
+			context.beginPath();
+			context.moveTo(0, 0);
+			context.lineTo(100, 0);
+			context.lineTo(100, 100);
+			context.lineTo(0, 100);
+			
+			// Прорисовка линии от точки (0, 100) к началу пути (0, 0),
+			// т.е. закрываем нашу фигуру
+			context.closePath();
+			
+			// Прорисовка контура полученного пути
+			context.stroke();
+			
+			// Восстанавливаем прежнее состояние контекста
+			context.restore();
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", draw, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+</body>
+</html>

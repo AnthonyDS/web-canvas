@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Canvas</title>
+	<script type="text/javascript">
+		function draw() {
+			var $ = function (id) {
+				return document.getElementById(id);
+			}
+			
+			var ctx = $("canvas").getContext("2d");
+			
+			var text = "HTML5 Canvas";
+			var textSize = ctx.measureText(text);
+			
+			ctx.save();
+			ctx.translate(20, 98);
+			
+			var gradient = ctx.createLinearGradient(0, 10 - textSize.width / 2, 0, 10 + textSize.width / 2);
+			gradient.addColorStop(0, "Red");
+			gradient.addColorStop(1, "Blue");
+			ctx.fillStyle = gradient;
+			
+			// Настройка шрифта
+			ctx.font = "bold 40px Segoe UI";
+			ctx.textBaseline = "alphabetic";
+			
+			ctx.fillText(text, 0, 0);
+			//ctx.fillText(text,(ctx.canvas.width - textSize.width) / 2 , 198);
+			ctx.restore();
+			
+		}
+		
+		if(window.addEventListener) {
+			window.addEventListener("load", draw, true);
+		}	
+	</script>
+</head>
+
+<body>
+	<canvas
+		id="canvas"
+		height="300"
+		width="400"
+		style="border: 1px solid #cecece;"
+	>
+		Ваш браузер не поддерживает элемент <b>Canvas</b>
+	</canvas>
+</body>
+</html>
